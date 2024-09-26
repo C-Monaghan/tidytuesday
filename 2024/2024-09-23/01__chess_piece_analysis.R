@@ -52,7 +52,7 @@ chess_games <- data %>%
 
 # Converting to game history
 chess_games <- chess_games %>%
-  filter(game_id %in% c(1:100)) %>%
+  # filter(game_id %in% c(1:100)) %>%
   mutate(data = future_map(moves, process_moves)) %>%
   select(-moves) %>% 
   tidyr::unnest(cols = c(data))
@@ -90,10 +90,12 @@ black_pieces <- c(
 
 # Filter paths to only include major pieces
 paths_pieces_white <- paths %>% 
-  filter(piece %in% white_pieces)
+  filter(piece %in% white_pieces) %>%
+  sample_n(25000)
 
 paths_pieces_black <- paths %>% 
-  filter(piece %in% black_pieces)
+  filter(piece %in% black_pieces) %>%
+  sample_n(25000)
 
 # Plotting white pathways
 pathways_white <- paths_pieces_white %>%
@@ -105,9 +107,9 @@ pathways_white <- paths_pieces_white %>%
     position = position_jitter(width = 0.2, height = 0.2), # Prevent overlapping
     curvature = 0.50,
     angle = -45,
-    alpha = 0.05,
+    alpha = 0.02,
     color = "white",
-    size = 1.05) +
+    size = 1.02) +
   geom_curve(
     data = paths_pieces_white %>% filter(!x_gt_y_equal_xy_sign),
     aes(x = x.from, y = y.from, xend = x.to, yend = y.to),
@@ -116,21 +118,21 @@ pathways_white <- paths_pieces_white %>%
     angle = 45,
     alpha = 0.02,
     color = "white",
-    size = 1.05
+    size = 1.02
   ) +
   labs(title = "White", x = "", y = "") +
   scale_fill_manual(values =  c("burlywood3", "burlywood4")) + # Traditional board colours
   coord_equal() +
   facet_wrap(~ factor(piece, c(white_pieces)), ncol = 4) +
-  theme_minimal() +
+  theme_void(base_family = "Segou UI") +
   theme(
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-    strip.text = element_text(size = 12, face = "bold"),
+    plot.title = element_text(hjust = 0.5, size = 8, face = "bold"),
+    strip.text = element_text(size = 6, face = "bold"),
     panel.grid = element_line(color = "gray70"),
     axis.text = element_blank(),
     axis.ticks = element_blank(),
     panel.spacing = unit(0.1, "lines"),
-    plot.margin = margin(5, 5, 5, 5)
+    plot.margin = margin(4, 4, 4, 4)
   ) +
   ggeasy::easy_center_title() +
   ggeasy::easy_remove_legend() +
@@ -151,9 +153,9 @@ pathways_black <- paths_pieces_black %>%
     position = position_jitter(width = 0.2, height = 0.2), # Prevent overlapping
     curvature = 0.50,
     angle = -45,
-    alpha = 0.05,
+    alpha = 0.02,
     color = "white",
-    size = 1.05
+    size = 1.02
   ) +
   geom_curve(
     data = paths_pieces_black %>% filter(!x_gt_y_equal_xy_sign),
@@ -168,20 +170,20 @@ pathways_black <- paths_pieces_black %>%
     angle = 45,
     alpha = 0.02,
     color = "white",
-    size = 1.05
+    size = 1.02
   ) +
   labs(title = "Black", x = "", y = "") +
   scale_fill_manual(values =  c("burlywood3", "burlywood4")) + # Traditional chess colours
   coord_equal() +
   facet_wrap(~ factor(piece, c(black_pieces)), ncol = 4) +
-  theme_minimal() +
+  theme_void() +
   theme(
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-    strip.text = element_text(size = 12, face = "bold"),
+    plot.title = element_text(hjust = 0.5, size = 8, face = "bold"),
+    strip.text = element_text(size = 6, face = "bold"),
     axis.text = element_blank(),
     axis.ticks = element_blank(),
     panel.spacing = unit(0.1, "lines"),  # Reducing space between facets
-    plot.margin = margin(5, 5, 5, 5)  # Tightening the plot margins
+    plot.margin = margin(4, 4, 4, 4)  # Tightening the plot margins
   ) +
   ggeasy::easy_remove_legend() +
   ggeasy::easy_remove_gridlines()
@@ -192,8 +194,8 @@ major_pathways <- pathways_white + pathways_black +
     title = "Movement of Major Chess Pieces: White vs Black",
     subtitle = "Paths for each major chess piece across multiple games",
     theme = theme(
-      plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),
-      plot.subtitle = element_text(hjust = 0.5, size = 14, face = "italic")
+      plot.title = element_text(hjust = 0.5, size = 10, face = "bold"),
+      plot.subtitle = element_text(hjust = 0.5, size = 9, face = "italic")
       ))
 
 # Exporting --------------------------------------------------------------------
@@ -201,5 +203,5 @@ export_path <- "./2024/2024-09-23/"
 
 cowplot::save_plot(
   filename = file.path(export_path, "major_piece_movement.png"),
-  plot = major_pathways,
-  base_height = 8)
+  plot = major_pathways, base_width = 9.5)
+
