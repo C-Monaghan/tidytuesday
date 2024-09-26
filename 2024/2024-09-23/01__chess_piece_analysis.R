@@ -1,12 +1,17 @@
+# Code for the 2024-09-23 TidyTuesday dataset
+# In this code we look at the positional movements from a large random sample
+# of the data
+# 
+# The below code is heavily inspired by @https://github.com/jbkunst 
+# ------------------------------------------------------------------------------
 rm(list = ls())
 
 library(dplyr)
 library(ggplot2)
 library(patchwork)
+library(furrr) 
 
 library(rchess) # For working with chess objects
-
-library(furrr)
 
 plan(multisession, workers = parallel::detectCores() - 1)
 
@@ -52,7 +57,6 @@ chess_games <- data %>%
 
 # Converting to game history
 chess_games <- chess_games %>%
-  # filter(game_id %in% c(1:100)) %>%
   mutate(data = future_map(moves, process_moves)) %>%
   select(-moves) %>% 
   tidyr::unnest(cols = c(data))
@@ -89,6 +93,8 @@ black_pieces <- c(
 )
 
 # Filter paths to only include major pieces
+# Using every move from the dataset produces a messy overcrowded plot
+# So instead we will sample 25000 random moves
 paths_pieces_white <- paths %>% 
   filter(piece %in% white_pieces) %>%
   sample_n(25000)
