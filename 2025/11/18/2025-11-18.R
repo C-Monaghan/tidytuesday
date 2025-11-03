@@ -10,6 +10,7 @@ library(rnaturalearth)
 theme_map <- function() {
   theme_void() +
     theme(
+      plot.background = element_rect(fill = "white"),
       plot.title = ggtext::element_markdown(
         face = "bold",
         hjust = 0,
@@ -100,7 +101,7 @@ tb_death_map <- europe_deaths_map |>
 
 # Exporting --------------------------------------------------------------------
 cowplot::save_plot(
-  filename = here::here("_drafts/files/tb_death_map.png"),
+  filename = file.path(this.path::this.dir(), "2025-11-18.png"),
   plot = tb_death_map,
   base_width = 10,
   base_height = 7
