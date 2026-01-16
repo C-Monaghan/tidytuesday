@@ -4,8 +4,4 @@
 
 # The Languages of Africa
 
-``` r
-knitr::include_graphics(path = here::here("2026/2026-01-13/20260113.png"))
-```
-
 ![](20260113.png)

@@ -7,5 +7,7 @@ format: gfm
 # The Languages of Africa
 
 ```{r}
+#| echo: false
+#|
 knitr::include_graphics(path = here::here("2026/2026-01-13/20260113.png"))
 ```
