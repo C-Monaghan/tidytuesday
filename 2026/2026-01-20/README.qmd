@@ -1,0 +1,13 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# The Languages of Africa
+
+```{r}
+#| echo: false
+#|
+knitr::include_graphics(path = here::here("2026/2026-01-20/20260120.png"))
+```
