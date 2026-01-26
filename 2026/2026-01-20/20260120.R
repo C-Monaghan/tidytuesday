@@ -135,7 +135,10 @@ fig <- apod_clean |>
   labs(
     title = "Evolution of Media in NASA's Astronomy Picture of the Day",
     x = NULL,
-    y = "Monthly proportion"
+    y = "Monthly proportion",
+    caption = glue::glue(
+      "#TidyTuesday: 2026 Week 3 &bull; Source: Astronomy Picture of the Day Archive"
+    )
   ) +
   theme_nasa() +
   guides(
