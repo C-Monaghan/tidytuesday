@@ -1,0 +1,13 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# Brazilian Companies
+
+```{r}
+#| echo: false
+#|
+knitr::include_graphics(path = here::here("2026/2026-01-27/20260127.png"))
+```
