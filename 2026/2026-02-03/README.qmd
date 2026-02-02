@@ -1,0 +1,13 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# GROW Observatory Edible Plants Database
+
+```{r}
+#| echo: false
+#|
+knitr::include_graphics(path = here::here("2026/2026-02-03/20260203.png"))
+```
