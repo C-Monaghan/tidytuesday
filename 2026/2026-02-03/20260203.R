@@ -7,24 +7,6 @@ pacman::p_load(
   showtext
 )
 
-# Functions --------------------------------------------------------------------
-parse_range <- function(x) {
-  x <- str_replace_all(x, "\\s+", "")
-
-  lower <- str_extract(x, "^\\d+") |> as.numeric()
-  upper <- str_extract(x, "(?<=-)\\d+") |> as.numeric()
-
-  tibble(
-    lower = lower,
-    upper = upper,
-    middle = ifelse(
-      !is.na(upper),
-      (lower + upper) / 2,
-      NA_real_
-    )
-  )
-}
-
 # Fonts ------------------------------------------------------------------------
 font_add_google("Oswald")
 font_add_google("Noto Sans")
@@ -91,17 +73,6 @@ theme_plants <- function() {
 # Data -------------------------------------------------------------------------
 edible_plants <- tidytuesdayR::tt_load(x = 2026, week = 5) |>
   purrr::pluck("edible_plants")
-
-edible_plants |>
-  select(sunlight) |>
-  mutate(
-    sunlight = str_replace_all(sunlight, "\\/", " or "),
-    sunlight = str_to_title(sunlight),
-    sunlight = str_replace_all(sunlight, "Or", "or"),
-    sunlight = str_squish(sunlight)
-  ) |>
-  pull(sunlight) |>
-  unique()
 
 # Processing -------------------------------------------------------------------
 plot_data <- edible_plants |>
