@@ -10,10 +10,10 @@ pacman::p_load(
 
 # Visualization Parameters -----------------------------------------------------
 # Plot aesthetics
-title_col    <- "gray20"           
-subtitle_col <- "gray20"     
-caption_col  <- "gray30"   
-text_col     <- "gray20"  
+title_col    <- "gray20"
+subtitle_col <- "gray20"
+caption_col  <- "gray30"
+text_col     <- "gray20"
 
 # Icons
 tt <- str_glue("#TidyTuesday: { 2024 } Week { 41 } &bull; Source: National Park Species<br>")
@@ -64,38 +64,38 @@ bird_abundance <- species %>%
 bird_abundance_plot <- bird_abundance %>%
   ggplot() +
   geom_hline(
-    data = data.frame(y = c(0:4) * 125), 
-    aes(yintercept = y), 
-    color = "lightgrey") + 
+    data = data.frame(y = c(0:4) * 125),
+    aes(yintercept = y),
+    color = "lightgrey") +
   geom_col(
     aes(x = reorder(str_wrap(Park_name, 16), Abundance),
         y = Abundance,
         fill = Abundance),
     position = "dodge2", show.legend = TRUE, alpha = .9) +
-  coord_polar() + 
+  coord_polar() +
   scale_y_continuous(
     limits = c(-200, 500),
     expand = c(0, 0),
     breaks = c(0, 100, 200, 300, 400)
-  ) + 
+  ) +
   scale_fill_gradientn(
     "Abundance",
     colours = c("#e9b91c","#db9a17","#ce7b12","#be471b", "#ae1324")
   ) +
   guides(
     fill = guide_colorsteps(
-      barwidth = 15, 
-      barheight = 1, 
-      title.position = "top", 
+      barwidth = 15,
+      barheight = 1,
+      title.position = "top",
       title.hjust = .5
     )
   ) +
   labs(
     title = title_text,
-    caption = caption_text, 
+    caption = caption_text,
     x = NULL,
     y = NULL) +
-  theme(    
+  theme(
     # Title
     plot.title = element_text(
       size = rel(5),
@@ -119,9 +119,8 @@ bird_abundance_plot <- bird_abundance %>%
     )
 
 # Export -----------------------------------------------------------------------
-export_path <- "./2024/2024-10-07/"
+export_path <- here::here("2024/2024-10-13/")
 
 cowplot::save_plot(filename = file.path(export_path, "Bird_abundance.png"),
                    plot = bird_abundance_plot,
                    base_height = 5.5)
-
