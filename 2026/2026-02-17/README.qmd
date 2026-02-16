@@ -1,0 +1,13 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# New Zealand agricultural production statistics
+
+```{r}
+#| echo: false
+#|
+knitr::include_graphics(path = here::here("2026/2026-02-17/20260217.png"))
+```
