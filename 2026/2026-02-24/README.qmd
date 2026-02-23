@@ -1,0 +1,13 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# Science Foundation Ireland Grant Commitments
+
+```{r}
+#| echo: false
+#|
+knitr::include_graphics(path = here::here("2026/2026-02-24/20260224.png"))
+```
