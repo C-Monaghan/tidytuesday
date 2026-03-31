@@ -100,24 +100,6 @@ season_temps |>
   ) +
   # Adding annotations
   annotate(
-    "rect",
-    xmin = 172,
-    xmax = 264,
-    ymin = -Inf,
-    ymax = Inf,
-    alpha = 0.05,
-    fill = "orange"
-  ) +
-  annotate(
-    "text",
-    x = 218,
-    y = Inf,
-    label = "Summer",
-    vjust = 1.5,
-    size = rel(3),
-    fontface = "bold"
-  ) +
-  annotate(
     "text",
     x = 90,
     y = 17,
