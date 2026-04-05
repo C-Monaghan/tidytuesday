@@ -1,0 +1,13 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# Repair Cafes Worldwide
+
+```{r}
+#| echo: false
+#|
+knitr::include_graphics(path = here::here("2026/2026-04-07/20260407.png"))
+```
