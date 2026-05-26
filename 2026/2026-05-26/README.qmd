@@ -1,0 +1,13 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# Sustainable Energy for All
+
+```{r}
+#| echo: false
+#|
+knitr::include_graphics(path = here::here("2026/2026-05-26/20260526.png"))
+```
