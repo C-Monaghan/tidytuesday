@@ -1,0 +1,13 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# European Parenting Leave Policies
+
+```{r}
+#| echo: false
+#|
+knitr::include_graphics(path = here::here("2026/2026-06-02/20260602.png"))
+```
