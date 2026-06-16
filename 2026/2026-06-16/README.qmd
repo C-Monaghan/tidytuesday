@@ -1,0 +1,13 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# UK Baby Names
+
+```{r}
+#| echo: false
+#|
+knitr::include_graphics(path = here::here("2026/2026-06-16/20260616.png"))
+```
